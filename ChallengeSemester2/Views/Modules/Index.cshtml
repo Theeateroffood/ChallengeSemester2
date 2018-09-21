@@ -1,0 +1,41 @@
+﻿@using Microsoft.AspNet.Identity;
+
+@model IEnumerable<ChallengeSemester2.Models.Module>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Your Modules</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MacAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IssueDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.UserId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Where(X => X.User.UserId == User.Identity.GetUserId())) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MacAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IssueDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.UserId)
+        </td>
+       
+    </tr>
+}
+
+</table>
